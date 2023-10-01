@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display&display=swap" rel="stylesheet">
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Bootstap-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</head>
+<style>
+
+:root {
+  --text: orange;
+  --button: #fff;
+  --hover: #000;
+}
+
+*{
+ font-family: 'Montserrat', serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--text);
+}
+
+#wrapper {
+width: 30%;
+text-align: center;  
+height: auto;
+
+}
+
+#quote-box {
+  overflow: auto;
+  padding: 40px 50px;
+  background-color: white;
+ box-shadow:5px 5px 8px rgba(0, 0, 0, 0.3);
+
+  
+}
+
+
+.quote-text{
+  font-size: 2em;
+  margin: 10px;
+  color: var(--text);
+
+}
+
+#quote-box a {
+float: left;
+margin-right: 5px; 
+ color: var(--button);
+}
+
+#new-quote {
+  float: right;
+  color: var(--button);
+}
+
+
+.quote-author p{
+  display: inline;
+
+}
+
+#quote-box .quote-author {
+   
+    height: auto;
+    clear: both;
+    padding: 20px 0;
+    font-size: 1.2em;
+    text-align: right;
+    color: var(--text);
+}
+
+.fa-quote-left:before{
+  content: "\f10d";
+  color: var(--text);
+}
+
+.custom-btn{
+  background-color: var(--text);
+}
+
+.btn:hover{
+  background-color: red;
+}
+
+.footer {
+    text-align: center;
+    display: block;
+    font-size: 14px;
+  padding-top: 10px;
+}
+
+
+
+</style>
+
+    </head>
+    <body>
+  
+<div id="wrapper">
+  <div id="quote-box">
+    <div class="quote-text">
+       <i class="fa-solid fa-quote-left"></i>    
+      <span id="text">Time is gold</span>
+    </div>
+    
+    <div class="quote-author" >
+      <p> - </p>
+      <span id="author" >Ancient Indian Proverb</span>
+    </div>
+    
+    <div class="buttons">
+     <a id="tweet-quote" href="https://twitter.com/intent/tweet" class="btn custom-btn">
+     <i class="fab fa-twitter"></i> 
+     </a>
+    <a id="tumbler-quote" href="#" class="btn custom-btn">
+     <i class="fab fa-tumblr"></i> 
+    </a>
+     <button id="new-quote" class="btn custom-btn">New Quote</button>
+     </div>
+   </div>
+    
+   <div class="footer"> by <strong>Ariane</strong></div>
+ 
+   </div>
+  <!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script> 
+    <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   <script>
+    let btn = document.getElementById("new-quote");
+    let quote = document.getElementById("text");
+    let author = document.getElementById("author");
+
+    //create an array of quotes 
+    const quotesArr = [{
+     quote: "We don't make mistakes, just happy little accidents",
+     author: "Bob Ross"
+    },
+    {
+      quote: "They say a person needs just three things to be truly happy in this world. Someone to love, something to do, and something to hope for",
+      author: "Tom Bodett"
+    },
+    {
+      quote: "Let us be grateful to the people who makes us happy; They are the charming gardeners who make our souls blossom",
+      author: "Marcel Proust"
+    },
+    {
+      quote: "If you want to be happy, BE",
+      author: "Leo Tolstoy"
+    },
+    {
+      quote: "Happiness isn't a goal, its a by-product of a life well lived",
+      author: "Eleanor Roosevelt"
+    }];
+
+    const colorArr = [ "#156064", "#00c49a", "#f8e16c" , "#ffc2b4", "#fb8f67"];
+   
+    const root = document.documentElement;
+
+    //add Event Listener 
+   btn.addEventListener('click', function(){
+    let random = Math.floor(Math.random() * quotesArr.length);
+    quote.innerText = quotesArr[random].quote;
+    author.innerText = quotesArr[random].author;
+   
+    
+    let colorRandom = Math.floor(Math.random() * colorArr.length);
+    document.body.style.backgroundColor = colorArr[random];
+    root.style.setProperty('--text', colorArr[random]);
+
+  
+  })
+
+
+   
+
+
+   
+   </script>
+
+
+    </body>
+    </html>
